@@ -83,7 +83,7 @@ class BooksApp extends React.Component {
         console.log("it has a value")
       }
     })
-
+  }
   render() {
     const {allBooks,currentBooks,readingBooks,wantingBooks,query,searchedBooks}=this.state
     return (
