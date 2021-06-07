@@ -30,6 +30,10 @@ class BooksApp extends React.Component {
       const rBooks=result.filter(res=>res.shelf==='read')
       this.setState({allBooks:result,currentBooks:cBooks,readingBooks:rBooks,wantingBooks:wBooks})})
   }
+
+  handleEvent= event =>{
+    return this.setState({updatedShelf:event.target.value})
+  }
   
   render() {
     return (
