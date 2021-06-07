@@ -39,6 +39,11 @@ class BooksApp extends React.Component {
     await this.setState({updatedShelf:shelf})
     await BooksAPI.update(book,shelf=this.state.updatedShelf)
   }
+
+  handleInputEvent=event=>{
+    const inputValue=event.target.value
+    return this.setState({query:inputValue})
+  }
   
   render() {
     return (
