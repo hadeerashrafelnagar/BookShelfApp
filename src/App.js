@@ -34,6 +34,11 @@ class BooksApp extends React.Component {
   handleEvent= event =>{
     return this.setState({updatedShelf:event.target.value})
   }
+
+  handleUpdate=async(book,shelf)=>{
+    await this.setState({updatedShelf:shelf})
+    await BooksAPI.update(book,shelf=this.state.updatedShelf)
+  }
   
   render() {
     return (
