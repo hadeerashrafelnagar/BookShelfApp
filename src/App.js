@@ -44,6 +44,20 @@ class BooksApp extends React.Component {
     const inputValue=event.target.value
     return this.setState({query:inputValue})
   }
+
+  handleSearchQuery=async(query)=>{
+    await this.state.query
+    query =this.state.query
+    await BooksAPI.search(query).then(newBooks=>{
+      let searchBooks
+      if (query===''){
+        searchBooks=[]
+        this.setState({searchedBooks:searchBooks})
+      }else{
+        this.setState({searchedBooks:newBooks})
+      }
+    })
+  }
   
   render() {
     return (
