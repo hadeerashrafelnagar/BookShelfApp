@@ -22,6 +22,15 @@ class BooksApp extends React.Component {
     newShelf:""
   }
 
+  componentDidMount(){
+    const books= BooksAPI.getAll()
+    books.then((result)=>{
+      const cBooks=result.filter(res=>res.shelf==='currentlyReading')
+      const wBooks=result.filter(res=>res.shelf==='wantToRead')
+      const rBooks=result.filter(res=>res.shelf==='read')
+      this.setState({allBooks:result,currentBooks:cBooks,readingBooks:rBooks,wantingBooks:wBooks})})
+  }
+  
   render() {
     return (
       <div className="app">
