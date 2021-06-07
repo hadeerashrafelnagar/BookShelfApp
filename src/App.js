@@ -58,7 +58,32 @@ class BooksApp extends React.Component {
       }
     })
   }
-  
+
+  handleNewShelfEvent=async(event,book,shelf='')=>{
+    event.preventDefault()
+    await this.setState({newShelf:event.target.value})
+    await BooksAPI.update(book,shelf=this.state.newShelf).then(()=>{
+      const oldBooks=this.state.allBooks.filter(b=>b.id===book.id)
+      console.log(oldBooks)
+      if (oldBooks.length===0){
+        this.state.allBooks.push(book)
+        this.setState({allBooks:this.state.allBooks})
+        if(shelf === "currentlyReading" ){
+          this.state.currentBooks.push(book)
+          this.setState({currentBooks:this.state.currentBooks})
+        }else if (shelf === "wantToRead" ){
+          this.state.wantingBooks.push(book)
+          this.setState({wantingBooks:this.state.wantingBooks})
+        }else if (shelf === "read" ){
+          this.state.readingBooks.push(book)
+          this.setState({readingBooks:this.state.readingBooks})
+        }
+      }else{
+        this.setState({updatedShelf:shelf})
+        console.log("it has a value")
+      }
+    })
+    
   render() {
     return (
       <div className="app">
