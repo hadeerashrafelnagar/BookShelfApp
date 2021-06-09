@@ -109,37 +109,36 @@ class BooksApp extends React.Component {
     })
   }
   render() {
-    const {allBooks,currentBooks,readingBooks,wantingBooks,query,searchedBooks}=this.state
+    const {currentBooks,readingBooks,wantingBooks,query,searchedBooks}=this.state
     return (
       <React.Fragment>
         <div className="app">
             <div className="list-books">
-              <Nav/>
+            <div className=" navbar-brand ">
+                <h2>MyReads</h2>
+                </div>
+            </div>
             <div className="list-books-content">
               <div>
                 <Switch>
-                <Route path="/search" render={()=>(
+                <Route path="/home" >
+                  <Read rBooks={readingBooks} onUpdate={this.handleUpdate} onEvent={this.handleEvent}></Read>
+                  <WantToRead wBooks={wantingBooks} onUpdate={this.handleUpdate} onEvent={this.handleEvent}></WantToRead>
+                  <CurrentlyReading cBooks={currentBooks} onUpdate={this.handleUpdate} onEvent={this.handleEvent}></CurrentlyReading>
+                </Route>
+              <Route path="/search" render={()=>(
                   <Search handleSearch={this.handleSearchQuery} handleInput={(query)=>this.handleInputEvent(query)}
                    searchedBooks={searchedBooks} onShelfEvent={this.handleNewShelfEvent} query={query}/>
-                  )}></Route>
-                  <Route path="/read" render={()=>(
-                    <Read rBooks={readingBooks}/>)}></Route>
-                  <Route path="/wanttoread" render={()=>(
-                    <WantToRead wBooks={wantingBooks}/>)}></Route>
-                  <Route path="/currentlyReading" render={()=>(
-                    <CurrentlyReading cBooks={currentBooks}/>)}></Route>
-                  <Route path="/home" render={()=>(
-                    <Home books={allBooks} onUpdate={this.handleUpdate} onEvent={this.handleEvent}/>)} ></Route>
-                  <Redirect from="/" to="/home" />
+                   )}></Route>
+                   <Redirect from='/' to='/home'></Redirect>
                 </Switch>
+                </div>
             </div>
             <div className="open-search">
               <Link to="/search">
               <button>Add a book</button>
               </Link>
             </div>
-          </div>
-      </div>
         </div>
       </React.Fragment>
     )
