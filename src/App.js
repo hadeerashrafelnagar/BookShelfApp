@@ -132,7 +132,7 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>
                 <Switch>
-                <Route path="/" >
+                <Route exact path="/" >
                   <Read rBooks={readingBooks} onUpdate={this.handleUpdate} onEvent={this.handleEvent}></Read>
                   <WantToRead wBooks={wantingBooks} onUpdate={this.handleUpdate} onEvent={this.handleEvent}></WantToRead>
                   <CurrentlyReading cBooks={currentBooks} onUpdate={this.handleUpdate} onEvent={this.handleEvent}></CurrentlyReading>
