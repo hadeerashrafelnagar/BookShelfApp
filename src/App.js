@@ -90,7 +90,6 @@ class BooksApp extends React.Component {
     await this.setState({newShelf:event.target.value})
     await BooksAPI.update(book,shelf=this.state.newShelf).then(()=>{
       const oldBooks=this.state.allBooks.filter(b=>b.id===book.id)
-      console.log(oldBooks)
       if (oldBooks.length===0){
         this.state.allBooks.push(book)
         this.setState({allBooks:this.state.allBooks})
@@ -106,7 +105,6 @@ class BooksApp extends React.Component {
         }
       }else{
         this.setState({updatedShelf:shelf})
-        console.log("it has a value")
       }
     })
   }
