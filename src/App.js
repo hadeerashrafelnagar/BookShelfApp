@@ -19,7 +19,8 @@ class BooksApp extends React.Component {
     updatedShelf:"",
     query:'',
     searchedBooks:[],
-    newShelf:""
+    newShelf:"",
+    oldBooks:[]
   }
 
   componentDidMount(){
