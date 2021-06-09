@@ -18,7 +18,8 @@ class BooksApp extends React.Component {
     query:'',
     searchedBooks:[],
     newShelf:"",
-    oldBooks:[]
+    oldBooks:[],
+    existingsearcedBooks:[]
   }
 
   componentDidMount(){
@@ -78,7 +79,8 @@ class BooksApp extends React.Component {
         searchBooks=[]
         this.setState({searchedBooks:searchBooks})
       }else{
-        this.setState({searchedBooks:newBooks})
+        console.log(newBooks)
+        // this.setState({searchedBooks:newBooks})
       }
     })
   }
@@ -119,7 +121,7 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>
                 <Switch>
-                <Route path="/home" >
+                <Route path="/" >
                   <Read rBooks={readingBooks} onUpdate={this.handleUpdate} onEvent={this.handleEvent}></Read>
                   <WantToRead wBooks={wantingBooks} onUpdate={this.handleUpdate} onEvent={this.handleEvent}></WantToRead>
                   <CurrentlyReading cBooks={currentBooks} onUpdate={this.handleUpdate} onEvent={this.handleEvent}></CurrentlyReading>
@@ -128,7 +130,6 @@ class BooksApp extends React.Component {
                   <Search handleSearch={this.handleSearchQuery} handleInput={(query)=>this.handleInputEvent(query)}
                    searchedBooks={searchedBooks} onShelfEvent={this.handleNewShelfEvent} query={query}/>
                    )}></Route>
-                   <Redirect from='/' to='/home'></Redirect>
                 </Switch>
                 </div>
             </div>
