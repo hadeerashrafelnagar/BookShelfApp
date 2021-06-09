@@ -38,7 +38,32 @@ class BooksApp extends React.Component {
 
   handleUpdate=async(book,shelf)=>{
     await this.setState({updatedShelf:shelf})
-    await BooksAPI.update(book,shelf=this.state.updatedShelf)
+    await BooksAPI.update(book,shelf=this.state.updatedShelf).then(()=>{
+      if(book.shelf==="currentlyReading"){
+        let bookIndexC=this.state.currentBooks.findIndex(b=>b.id===book.id)
+        this.state.currentBooks.splice(bookIndexC,1)
+        this.setState({currentBooks:this.state.currentBooks})
+      }else if (book.shelf === "wantToRead" ){
+        let bookIndexW=this.state.wantingBooks.findIndex(b=>b.id===book.id)
+        this.state.wantingBooks.splice(bookIndexW,1)
+        this.setState({wantingBooks:this.state.wantingBooks})
+      }else if (book.shelf === "read" ){
+        let bookIndexR=this.state.readingBooks.findIndex(b=>b.id===book.id)
+        this.state.readingBooks.splice(bookIndexR,1)
+        this.setState({readingBooks:this.state.readingBooks})
+      }
+      
+      if(shelf === "currentlyReading" ){
+        this.state.currentBooks.push(book)
+        this.setState({currentBooks:this.state.currentBooks})
+      }else if (shelf === "wantToRead" ){
+        this.state.wantingBooks.push(book)
+        this.setState({wantingBooks:this.state.wantingBooks})
+      }else if (shelf === "read" ){
+        this.state.readingBooks.push(book)
+        this.setState({readingBooks:this.state.readingBooks})
+      }
+    })
   }
 
   handleInputEvent=event=>{
