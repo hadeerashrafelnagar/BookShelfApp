@@ -6,8 +6,6 @@ import './App.css'
 import Read from './Read';
 import CurrentlyReading from './CurrentlyReading';
 import WantToRead from './WantToRead';
-import Nav from './NavBar';
-import Home from './Home';
 import Search from './Search';
 
 class BooksApp extends React.Component {
