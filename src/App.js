@@ -79,8 +79,19 @@ class BooksApp extends React.Component {
         searchBooks=[]
         this.setState({searchedBooks:searchBooks})
       }else{
-        console.log(newBooks)
-        // this.setState({searchedBooks:newBooks})
+        if(newBooks.error==='empty query'){
+          searchBooks=[]
+          this.setState({searchedBooks:searchBooks})
+          alert(`There are no available books using this query "${query}"`)
+        }else{
+          newBooks.map(book=>{
+            if(this.state.allBooks.some(x=>x.id===book.id)){
+              book.shelf=this.state.allBooks.find(y=>y.id===book.id).shelf
+            }
+            return book
+          })
+          this.setState({searchedBooks:newBooks})
+        }
       }
     })
   }
