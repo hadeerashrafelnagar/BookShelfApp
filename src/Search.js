@@ -7,7 +7,7 @@ class Search extends Component {
       <React.Fragment>
                 <div className="search-books">
                   <div className="search-books-bar">
-                    <Link to="/home">
+                    <Link  to="/">
                     <button className="close-search">Close</button>
                     </Link>
                     <div className="search-books-input-wrapper">
